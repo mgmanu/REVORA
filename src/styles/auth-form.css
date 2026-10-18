@@ -1,0 +1,194 @@
+
+.auth-form {
+  width: 100%;
+  position: relative;
+  z-index: 2;
+}
+
+.form-overline {
+  color: #00d9ed;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  margin-bottom: 13px;
+}
+
+.auth-form h2 {
+  color: #f4f2ec;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(32px, 3vw, 43px);
+  font-weight: 400;
+  letter-spacing: -1.5px;
+  line-height: 1.1;
+  margin: 0;
+}
+
+.auth-form h2 > span {
+  color: #00d9ed;
+}
+
+.form-description {
+  color: #999eac;
+  font-size: 12px;
+  line-height: 1.8;
+  margin: 12px 0 27px;
+}
+
+.field-label {
+  display: block;
+  color: #c7c9d1;
+  font-size: 11px;
+  font-weight: 500;
+  margin: 17px 0 3px;
+}
+
+.input-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 1px solid #414957;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.input-wrap:focus-within {
+  border-bottom-color: #00d9ed;
+  box-shadow: 0 1px 0 #00d9ed;
+}
+
+.input-wrap > input {
+  width: 100%;
+  min-width: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #f4f2ec;
+  font-family: inherit;
+  font-size: 12px;
+  padding: 12px 0;
+}
+
+.input-wrap > input::placeholder {
+  color: #686e7c;
+}
+
+.input-wrap > svg {
+  flex-shrink: 0;
+  color: #858c9b;
+}
+
+.password-toggle {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  border: none;
+  background: transparent;
+  color: #858c9b;
+  padding: 6px 0 6px 6px;
+  cursor: pointer;
+}
+
+.password-toggle:hover {
+  color: #00d9ed;
+}
+
+.form-options {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin: 18px 0 25px;
+}
+
+.email-note,
+.signup-security-note {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #838b9b;
+  font-size: 10px;
+}
+
+.email-note svg,
+.signup-security-note svg {
+  color: #00c9db;
+  flex-shrink: 0;
+}
+
+.text-action,
+.form-switch-note button {
+  border: none;
+  background: transparent;
+  color: #00d9ed;
+  font-family: inherit;
+  font-size: 10px;
+  cursor: pointer;
+}
+
+.text-action:hover,
+.form-switch-note button:hover {
+  color: #8cf5ff;
+}
+
+.auth-submit {
+  width: 100%;
+  min-height: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  border: 1px solid #00d9ed;
+  border-radius: 30px;
+  padding: 0 19px;
+  background: #00d9ed;
+  color: #07131e;
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 0 18px rgb(0 217 237 / 12%);
+  transition: background 0.25s ease, box-shadow 0.25s ease,
+    transform 0.25s ease;
+}
+
+.auth-submit:hover {
+  background: #73f1fb;
+  box-shadow: 0 0 26px rgb(0 217 237 / 27%);
+  transform: translateY(-1px);
+}
+
+.auth-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.form-switch-note {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 5px;
+  color: #969ba8;
+  font-size: 10px;
+  margin-top: 23px;
+}
+
+.signup-security-note {
+  margin: 15px 0 20px;
+  line-height: 1.5;
+}
+
+.auth-form button:focus-visible {
+  outline: 2px solid #8cf5ff;
+  outline-offset: 4px;
+}
+
+@media (max-width: 480px) {
+  .auth-form h2 {
+    font-size: 35px;
+  }
+
+  .form-description {
+    margin-bottom: 20px;
+  }
+}
