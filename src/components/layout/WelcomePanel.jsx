@@ -1,56 +1,63 @@
 
-import { ArrowRight, CheckCircle2, GraduationCap } from "lucide-react";
+import {
+  ArrowRight,
+  CheckCircle2,
+  GraduationCap,
+} from "lucide-react";
+
 import "../../styles/welcome-panel.css";
 
 export default function WelcomePanel({ isSignup, onToggle }) {
+  const features = [
+    "Document tracking",
+    "Approval progress",
+    "Physical signature coordination",
+  ];
+
   return (
-    <section className={`welcome-panel ${isSignup ? "signup-mode" : ""}`}>
+    <section
+      className={`welcome-panel ${isSignup ? "signup-mode" : "login-mode"}`}
+      aria-label="REVORA welcome panel"
+    >
+      <div className="welcome-glass-layer" aria-hidden="true" />
+      <div className="welcome-grid-layer" aria-hidden="true" />
+
       <div className="welcome-content">
         <div className="welcome-brand-mark">
-          <GraduationCap size={25} strokeWidth={1.5} />
+          <GraduationCap size={26} strokeWidth={1.6} />
         </div>
 
         <div className="welcome-overline">
-          {isSignup ? "YOUR CAMPUS. CONNECTED." : "THE CAMPUS, SIMPLIFIED."}
+          REVA UNIVERSITY
         </div>
 
         <h2>
           {isSignup ? (
             <>
-              Welcome
-              <br />
-              back to <span>REVORA.</span>
+              WELCOME
+              <span> TO REVORA!</span>
             </>
           ) : (
             <>
-              One campus.
-              <br />
-              <span>One seamless</span>
-              <br />
-              experience.
+              WELCOME
+              <span> BACK!</span>
             </>
           )}
         </h2>
 
         <p>
           {isSignup
-            ? "Your university documents, requests and updates are right where you need them."
-            : "Move university paperwork forward with clarity, accountability and less waiting."}
+            ? "Bring your university documents, approvals and signature coordination into one connected workspace."
+            : "Your REVA University document workflow, approvals and updates are all in one place."}
         </p>
 
         <div className="welcome-features">
-          <div>
-            <CheckCircle2 size={15} />
-            <span>Track every document</span>
-          </div>
-          <div>
-            <CheckCircle2 size={15} />
-            <span>Know what's happening next</span>
-          </div>
-          <div>
-            <CheckCircle2 size={15} />
-            <span>Stay connected to your campus</span>
-          </div>
+          {features.map((feature) => (
+            <div key={feature}>
+              <CheckCircle2 size={15} />
+              <span>{feature}</span>
+            </div>
+          ))}
         </div>
 
         <button
@@ -69,7 +76,7 @@ export default function WelcomePanel({ isSignup, onToggle }) {
         <div className="decoration-ring ring-one" />
         <div className="decoration-ring ring-two" />
         <div className="decoration-orb" />
-        <span className="decoration-label">RV / 01</span>
+        <span className="decoration-label">REVORA / 01</span>
       </div>
     </section>
   );

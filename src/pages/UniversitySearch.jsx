@@ -14,8 +14,12 @@ export default function UniversitySearch({ onSelectUniversity }) {
     },
   ];
 
+  const searchTerm = query.trim().toLowerCase();
+
   const filteredUniversities = universities.filter((university) =>
-    university.name.toLowerCase().includes(query.trim().toLowerCase())
+    university.name.toLowerCase().includes(searchTerm) ||
+    university.location.toLowerCase().includes(searchTerm) ||
+    university.domain.toLowerCase().includes(searchTerm)
   );
 
   return (
@@ -44,14 +48,14 @@ export default function UniversitySearch({ onSelectUniversity }) {
         </div>
 
         <h1>
-          Every campus.
-          <br />
-          <span>One connection.</span>
+          REVA University.
+            <br />
+            <span>One connected workflow.</span>
         </h1>
 
         <p className="discovery-description">
-          Find your university to access document requests, approvals,
-          updates and your campus workflow in one place.
+          Access document requests, faculty approvals, signature tracking,
+          and status updates through one connected REVA University workspace.
         </p>
 
         <div className="university-search">
@@ -61,7 +65,7 @@ export default function UniversitySearch({ onSelectUniversity }) {
             type="search"
             value={query}
             onChange={(event) => setQuery(event.target.value)}
-            placeholder="Search your university..."
+            placeholder="Search REVA University..."
             aria-label="Search universities"
           />
 
@@ -69,7 +73,7 @@ export default function UniversitySearch({ onSelectUniversity }) {
         </div>
 
         <div className="university-list-heading">
-          <span>AVAILABLE UNIVERSITY</span>
+          <span>REGISTERED UNIVERSITY</span>
           <span>{filteredUniversities.length.toString().padStart(2, "0")}</span>
         </div>
 

@@ -11,6 +11,13 @@
   -moz-osx-font-smoothing: grayscale;
   font-optical-sizing: auto;
   font-weight: 400;
+
+  --revora-bg: #080e17;
+  --revora-surface: #0d1520;
+  --revora-cyan: #00d9ed;
+  --revora-text: #f4f2ec;
+  --revora-muted: #9aa4b3;
+  --revora-border: rgb(177 197 215 / 12%);
 }
 
 * {
@@ -20,8 +27,9 @@
 html {
   min-width: 320px;
   min-height: 100%;
-  background: #080e17;
+  background: var(--revora-bg);
   scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
@@ -32,12 +40,16 @@ body {
 
 body,
 button,
-input {
+input,
+textarea,
+select {
   font-family: "DM Sans", Inter, "Segoe UI", sans-serif;
 }
 
 button,
-input {
+input,
+textarea,
+select {
   font: inherit;
 }
 
@@ -47,8 +59,10 @@ button {
 
 button:focus-visible,
 a:focus-visible,
-input:focus-visible {
-  outline: 2px solid #00d9ed;
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--revora-cyan);
   outline-offset: 3px;
 }
 
@@ -56,11 +70,22 @@ a {
   color: inherit;
 }
 
+img,
+svg {
+  max-width: 100%;
+}
+
 ::selection {
   color: #07131e;
-  background: #00d9ed;
+  background: var(--revora-cyan);
 }
 
 #root {
   min-height: 100vh;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }

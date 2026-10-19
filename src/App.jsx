@@ -14,7 +14,7 @@ export default function App() {
     setSelectedUniversity(null);
   }
 
-  if (!selectedUniversity) {
+  if (selectedUniversity === null) {
     return (
       <UniversitySearch
         onSelectUniversity={handleSelectUniversity}

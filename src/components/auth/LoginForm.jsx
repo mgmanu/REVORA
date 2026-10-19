@@ -1,6 +1,13 @@
 
 import { useState } from "react";
-import { ArrowRight, Eye, EyeOff, LockKeyhole, Mail } from "lucide-react";
+import {
+  ArrowRight,
+  Eye,
+  EyeOff,
+  LockKeyhole,
+  Mail,
+} from "lucide-react";
+
 import "../../styles/auth-form.css";
 
 export default function LoginForm({
@@ -15,6 +22,12 @@ export default function LoginForm({
 }) {
   const [showPassword, setShowPassword] = useState(false);
 
+  function handleForgotPassword() {
+    onMessage(
+      "Password recovery will be available after authentication is connected."
+    );
+  }
+
   return (
     <form className="auth-form" onSubmit={onSubmit} noValidate>
       <div className="form-overline">WELCOME BACK</div>
@@ -24,7 +37,7 @@ export default function LoginForm({
       </h2>
 
       <p className="form-description">
-        Pick up where your campus journey left off.
+        Pick up where your university journey left off.
       </p>
 
       <label className="field-label" htmlFor="login-email">
@@ -42,6 +55,7 @@ export default function LoginForm({
           disabled={isInactive}
           required
         />
+
         <Mail size={13} />
       </div>
 
@@ -64,11 +78,17 @@ export default function LoginForm({
         <button
           type="button"
           className="password-toggle"
-          onClick={() => setShowPassword(!showPassword)}
+          onClick={() => setShowPassword((previous) => !previous)}
           aria-label={showPassword ? "Hide password" : "Show password"}
+          aria-pressed={showPassword}
+          disabled={isInactive}
           tabIndex={isInactive ? -1 : 0}
         >
-          {showPassword ? <EyeOff size={13} /> : <Eye size={13} />}
+          {showPassword ? (
+            <EyeOff size={13} />
+          ) : (
+            <Eye size={13} />
+          )}
         </button>
       </div>
 
@@ -81,24 +101,30 @@ export default function LoginForm({
         <button
           type="button"
           className="text-action"
-          onClick={() =>
-            onMessage(
-              "Password recovery will be available after authentication is connected."
-            )
-          }
+          onClick={handleForgotPassword}
+          disabled={isInactive}
         >
           Forgot password?
         </button>
       </div>
 
-      <button className="auth-submit" type="submit" disabled={isInactive}>
+      <button
+        className="auth-submit"
+        type="submit"
+        disabled={isInactive}
+      >
         <span>Sign in to REVORA</span>
         <ArrowRight size={16} />
       </button>
 
       <div className="form-switch-note">
         New to REVORA?
-        <button type="button" onClick={onSignup}>
+
+        <button
+          type="button"
+          onClick={onSignup}
+          disabled={isInactive}
+        >
           Create an account
         </button>
       </div>

@@ -8,6 +8,7 @@ import {
   Mail,
   UserRound,
 } from "lucide-react";
+
 import "../../styles/auth-form.css";
 
 export default function SignupForm({
@@ -23,16 +24,25 @@ export default function SignupForm({
 }) {
   const [showPassword, setShowPassword] = useState(false);
 
-  return (
-    <form className="auth-form" onSubmit={onSubmit} noValidate>
-      <div className="form-overline">JOIN THE CAMPUS</div>
+  function togglePasswordVisibility() {
+    setShowPassword((previous) => !previous);
+  }
 
-      <h2>
+  return (
+    <form
+      className="auth-form"
+      onSubmit={onSubmit}
+      noValidate
+      aria-labelledby="signup-heading"
+    >
+      <div className="form-overline">JOIN REVORA</div>
+
+      <h2 id="signup-heading">
         Create account<span>.</span>
       </h2>
 
       <p className="form-description">
-        Your university workflow, all in one place.
+        Your REVA University document workflow, all in one place.
       </p>
 
       <label className="field-label" htmlFor="signup-name">
@@ -42,15 +52,18 @@ export default function SignupForm({
       <div className="input-wrap">
         <input
           id="signup-name"
+          name="name"
           type="text"
           autoComplete="name"
           placeholder="Enter your full name"
           value={name}
           onChange={(event) => setName(event.target.value)}
           disabled={isInactive}
+          maxLength={100}
           required
         />
-        <UserRound size={13} />
+
+        <UserRound size={13} aria-hidden="true" />
       </div>
 
       <label className="field-label" htmlFor="signup-email">
@@ -60,6 +73,7 @@ export default function SignupForm({
       <div className="input-wrap">
         <input
           id="signup-email"
+          name="email"
           type="email"
           autoComplete="email"
           placeholder="you@reva.edu.in"
@@ -68,7 +82,8 @@ export default function SignupForm({
           disabled={isInactive}
           required
         />
-        <Mail size={13} />
+
+        <Mail size={13} aria-hidden="true" />
       </div>
 
       <label className="field-label" htmlFor="signup-password">
@@ -78,6 +93,7 @@ export default function SignupForm({
       <div className="input-wrap">
         <input
           id="signup-password"
+          name="new-password"
           type={showPassword ? "text" : "password"}
           autoComplete="new-password"
           placeholder="Create a strong password"
@@ -86,22 +102,31 @@ export default function SignupForm({
           disabled={isInactive}
           minLength={8}
           required
+          aria-describedby="signup-password-help"
         />
 
         <button
           type="button"
           className="password-toggle"
-          onClick={() => setShowPassword(!showPassword)}
+          onClick={togglePasswordVisibility}
           aria-label={showPassword ? "Hide password" : "Show password"}
-          tabIndex={isInactive ? -1 : 0}
+          aria-pressed={showPassword}
+          disabled={isInactive}
         >
-          {showPassword ? <EyeOff size={13} /> : <Eye size={13} />}
+          {showPassword ? (
+            <EyeOff size={13} aria-hidden="true" />
+          ) : (
+            <Eye size={13} aria-hidden="true" />
+          )}
         </button>
       </div>
 
-      <div className="signup-security-note">
-        <LockKeyhole size={12} />
-        Use at least 8 characters for your password.
+      <div
+        className="signup-security-note"
+        id="signup-password-help"
+      >
+        <LockKeyhole size={12} aria-hidden="true" />
+        <span>Use at least 8 characters for your password.</span>
       </div>
 
       <button
@@ -110,12 +135,17 @@ export default function SignupForm({
         disabled={isInactive}
       >
         <span>Create your REVORA account</span>
-        <ArrowRight size={16} />
+        <ArrowRight size={16} aria-hidden="true" />
       </button>
 
       <div className="form-switch-note">
-        Already have an account?
-        <button type="button" onClick={onLogin}>
+        <span>Already have an account?</span>
+
+        <button
+          type="button"
+          onClick={onLogin}
+          disabled={isInactive}
+        >
           Sign in
         </button>
       </div>
